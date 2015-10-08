@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terminator Memory Match</title>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://learning-fuze.github.io/memory_match/v0.1/script.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="memory_match">
+    <header class="game_menu">
+        <p class="title">Terminator Match Game</p>
+        <div class="settings_about">
+            <button class="about"><a href="about.html">About</a></button><br>
+            <button class="about"><a href="#">Settings</a></button>
+        </div>
+        <div class="reboot_sound">
+            <button class="music">Play Music</button><br>
+            <button>Reboot</button>
+        </div>
+    </header>
+    <section class="game_info">
+        <div class="stats games_played">
+            <p class="label">Games Played</p>
+            <div class="value"></div>
+        </div>
+        <div class="stats attempts">
+            <p class="label">Shots</p>
+            <div class="value"></div>
+        </div>
+        <div class="stats accuracy">
+            <p class="label">Accuracy</p>
+            <div class="value"></div>
+        </div>
+    </section>
+    <section class="game_area">
+        <div class="card" id="card1">
+            <div class="card front" id="front1"><img src="images/t1-reese.png"></div>
+            <div class="card back" id="back1"></div>
+        </div>
+        <div class="card" id="card2">
+            <div class="card front" id="front2"><img src="images/t1-sarah.jpg"></div>
+            <div class="card back" id="back2"></div>
+        </div>
+        <div class="card" id="card3">
+            <div class="card front" id="front3"><img src="images/t1-terminator.jpg"></div>
+            <div class="card back" id="back3"></div>
+        </div>
+        <div class="card" id="card4">
+            <div class="card front" id="front4"><img src="images/t1-reese.png"></div>
+            <div class="card back" id="back4"></div>
+        </div>
+        <div class="card" id="card5">
+            <div class="card front" id="front5"><img src="images/t2-arnold-john.jpg"></div>
+            <div class="card back" id="back5"></div>
+        </div>
+        <div class="card" id="card6">
+            <div class="card front" id="front6"><img src="images/t2-terminator.jpg"></div>
+            <div class="card back" id="back6"></div>
+        </div>
+        <div class="card" id="card7">
+            <div class="card front" id="front7"><img src="images/t1-sarah.jpg"></div>
+            <div class="card back" id="back7"></div>
+        </div>
+        <div class="card" id="card8">
+            <div class="card front" id="front8"><img src="images/t3-terminator.jpg"></div>
+            <div class="card back" id="back8"></div>
+        </div>
+        <div class="card" id="card9">
+            <div class="card front" id="front9"><img src="images/t4-marcus.jpg"></div>
+            <div class="card back" id="back9"></div>
+        </div>
+        <div class="card" id="card10">
+            <div class="card front" id="front10"><img src="images/t2-arnold-john.jpg"></div>
+            <div class="card back" id="back10"></div>
+        </div>
+        <div class="card" id="card11">
+            <div class="card front" id="front11"><img src="images/t5-john.jpg"></div>
+            <div class="card back" id="back11"></div>
+        </div>
+        <div class="card" id="card12">
+            <div class="card front" id="front12"><img src="images/t4-marcus.jpg"></div>
+            <div class="card back" id="back12"></div>
+        </div>
+        <div class="card" id="card13">
+            <div class="card front" id="front13"><img src="images/t1-terminator.jpg"></div>
+            <div class="card back" id="back13"></div>
+        </div>
+        <div class="card" id="card14">
+            <div class="card front" id="front14"><img src="images/t5-sarah-kyle.jpg"></div>
+            <div class="card back" id="back14"></div>
+        </div>
+        <div class="card" id="card15">
+            <div class="card front" id="front15"><img src="images/t5-john.jpg"></div>
+            <div class="card back" id="back15"></div>
+        </div>
+        <div class="card" id="card16">
+            <div class="card front" id="front16"><img src="images/t2-terminator.jpg"></div>
+            <div class="card back" id="back16"></div>
+        </div>
+        <div class="card" id="card17">
+            <div class="card front" id="front17"><img src="images/t3-terminator.jpg"></div>
+            <div class="card back" id="back17"></div>
+        </div>
+        <div class="card" id="card18">
+            <div class="card front" id="front18"><img src="images/t5-sarah-kyle.jpg"></div>
+            <div class="card back" id="back18"></div>
+        </div>
+    </section>
+</body>
+</html>
