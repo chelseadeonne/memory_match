@@ -67,7 +67,7 @@ body {
     border: 1px solid black;
     background-image: none;
 }
-.game_info, .game-area, .card {
+.game_info, #game-area, .card {
     display: inline-block;
 }
 .game_info {
@@ -95,7 +95,7 @@ body {
     text-align: center;
     margin: 3% auto;
 }
-.game-area {
+#game-area {
     width: 75%;
     height: 75%;
     vertical-align: top;
