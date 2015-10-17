@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="description" content="Chelsea's Portfolio">
+    <meta name="keywords" content ="Chelsea, Leopold, Contact, Web, Development, Developer">
+    <title>Contact Chelsea</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body class="contact_page">
+<header class="contact_header">
+    <ul class="contact_nav">
+        <li><a href="index.html">Welcome</a></li>
+        <li><a href="about.html">About Me</a></li>
+        <li><a href="skills.html">Skills</a></li>
+        <li><a href="experience.html">Experience</a></li>
+        <li><a href="contact.html"><i class="star fa fa-star-o"></i> Contact Me <i class="star fa fa-star-o"></i></a></li>
+    </ul>
+</header>
+<div class="contact_main">
+    <p class="contact_paragraph">Please fill out the form below and I will respond as soon as possible, or at your earliest convenience.</p>
+    <form action="http://learningfuze.com/echo.php" method="post">
+        <fieldset>
+            <legend>Let's Make Contact</legend>
+            <input type="text" name="firstname" placeholder="First Name">
+            <input type="text" name="lastname" placeholder="Last Name">
+            <input type="text" name="email" placeholder="Email Address">
+            <input type="text" name="phone" placeholder="Phone Number">
+            <div class="reach1">
+                <label for="bestday">Best Day To Reach You:</label>
+                <select name="day" id="bestday">
+                    <option value="sunday">Sunday</option>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                </select>
+            </div>
+            <div class="reach2">
+                <label for="besttime" class="reach">Most Convenient Time Frame:</label>
+                <select name="time" id="besttime">
+                    <option value="morning">Morning</option>
+                    <option value="afternoon">Afternoon</option>
+                    <option value="evening">Evening</option>
+                </select>
+            </div>
+            <textarea class="request" placeholder="Please briefly explain your project's objective"></textarea>
+            <input type="submit" value="send" class="send">
+        </fieldset>
+    </form>
+
+    <ul class="contact_options">
+        <li><a class=size href="https://github.com/chelseadeonne"><i class="contact_hover fa fa-github-square"></i></a></li>
+        <li><a class="size" href="mailto:chelseadeonne@gmail.com"><i class="contact_hover fa fa-envelope"></i></a></li>
+        <li><a class="size" href="https://www.linkedin.com/pub/chelsea-leopold/b9/10b/21b"><i class="contact_hover fa fa-linkedin-square"></i></a></li>
+    </ul>
+</div>
+<footer class="contact_footer">
+    <p class="signature">Chelsea Deonne Leopold</p>
+</footer>
+</body>
+</html>
