@@ -8,11 +8,11 @@ $(document).ready(function(){
         card_flip.play();
         var current_card = $(this).find(".front").attr("data-card");
         if (first_card_clicked == null) {
-            $(this).find(".back").html("<img src='images/bullet.png'>").fadeOut(500);
+            $(this).find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1500);
             first_card_clicked = current_card;
             console.log("The first card you clicked is: " + first_card_clicked);
         }else {
-            $(this).find(".back").html("<img src='images/bullet.png'>").fadeOut(500);
+            $(this).find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1500);
             second_card_clicked = current_card;
             console.log("second card was clicked: " + second_card_clicked);
             if (first_card_clicked === second_card_clicked) {
