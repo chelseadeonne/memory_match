@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terminator Memory Match</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="memory_match">
+<audio loop id="theme_music">
+    <source src="sounds/music.mp3">
+</audio>
+<audio id="card_flip">
+    <source src="sounds/card_flip.mp3">
+</audio>
+<audio id="reboot">
+    <source src="sounds/reboot.mp3">
+</audio>
+<audio id="match">
+    <source src="sounds/match.mp3">
+</audio>
+<audio id="no_match">
+    <source src="sounds/no_match.mp3">
+</audio>
+<audio id="game_won">
+    <source src="sounds/game_won.mp3">
+</audio>
+<header class="game_menu">
+    <div class="title">Terminator Match Game</div>
+    <div class="settings_about">
+        <button class="about"><a href="about.html">About</a></button><br>
+        <button class="about"><a href="#">Settings</a></button>
+    </div>
+    <div class="reboot_sound">
+        <button class="music">Play Music</button><br>
+        <button class="reset">Reboot</button>
+    </div>
+</header>
+<section class="game_info">
+    <div class="stats games-played">
+        <p class="label">Games Played</p>
+        <div class="value"></div>
+    </div>
+    <div class="stats attempts">
+        <p class="label">Attempts</p>
+        <div class="value"></div>
+    </div>
+    <div class="stats accuracy">
+        <p class="label">Accuracy</p>
+        <div class="value"></div>
+    </div>
+</section>
+<section id="game-area">
+    <div class="card" id="card1">
+        <div class="front" id="front1" data-card="reese"><img src="images/t1-reese.png"></div>
+        <div class="back" id="back1"></div>
+    </div>
+    <div class="card" id="card2">
+        <div class="front" id="front2" data-card="t1-sarah"><img src="images/t1-sarah.jpg"></div>
+        <div class="back" id="back2"></div>
+    </div>
+    <div class="card" id="card4">
+        <div class="front" id="front4" data-card="reese"><img src="images/t1-reese.png"></div>
+        <div class="back" id="back4"></div>
+    </div>
+    <div class="card" id="card7">
+        <div class="front" id="front7" data-card="t1-sarah"><img src="images/t1-sarah.jpg"></div>
+        <div class="back" id="back7"></div>
+    </div>
+</section>
+</body>
+</html>

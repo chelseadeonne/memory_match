@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+@font-face {
+    font-family: terminator;
+    src: url(fonts/terminator.otf);
+}
+body {
+    width: 100vw;
+    height: 100vh;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: terminator, sans-serif;
+}
+
+/************* Memory Match Game *******************/
+
+.game_menu {
+    width: 95%;
+    height: 20%;
+    margin-bottom: 2%;
+    margin-right: auto;
+    margin-left: auto;
+    background-image: url(images/tlogo.png);
+    background-repeat: no-repeat;
+    background-size: 15% 100%;
+    background-position: 10px 5px;
+    border-top: none;
+    position: relative;
+}
+.title {
+    width: 75%;
+    height: 33%;
+    font-size: 3vw;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+.settings_about, .reboot_sound {
+    position: absolute;
+    text-align: right;
+}
+.settings_about {
+    top: 0;
+    right: 0;
+}
+.settings_about a, .settings_about a:visited {
+    text-decoration: none;
+    color: black;
+}
+.reboot_sound {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+.memory_match button {
+    font-family: terminator, sans-serif;
+    font-size: 1vw;
+    border: 1px solid #960b27;
+    color: black;
+}
+.memory_match button:hover {
+    background-color: #960b27;
+    color: black;
+    border: 1px solid black;
+    background-image: none;
+}
+.winner {
+    color: #960b27;
+    font-size: 3vw;
+}
+.again {
+    color: #960b27;
+    font-size: 1vw;
+    display: inline-block;
+    margin: 0 5% 0 10%;
+}
+.affirmative, .negative {
+    margin-left: 5%;
+}
+.game_info, #game-area, .card {
+    display: inline-block;
+}
+.game_info {
+    width: 16%;
+    height: 75%;
+    margin-right: 2%;
+}
+.stats {
+    width: 95%;
+    height: 15%;
+    position: relative;
+    margin-bottom: 25%;
+    border: 1px solid #960b27;
+    border-top: none;
+    border-radius: 5%;
+}
+.label {
+    position: relative;
+    font-size: 1vw;
+}
+.value {
+    font-size: 1vw;
+    width: 40%;
+    height: 40%;
+    position: relative;
+    text-align: center;
+    margin: 3% auto;
+}
+#game-area {
+    width: 75%;
+    height: 75%;
+    vertical-align: top;
+    background-image: url(images/silver.jpg);
+}
+.card {
+    width: 13%;
+    height: 29%;
+    vertical-align: top;
+    margin: 1.5% 1.5% 0 0;
+    border-radius: 5%;
+    position: relative;
+}
+.card:hover {
+    border: 1px solid #960b27;
+}
+.back, .front, .front img, .back img {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    border-radius: 5%;
+    border: none;
+}
+.back {
+    background-image: url(images/skynet.jpg);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: 100% 100%;
+}
+#game_won {
+    position: relative;
+    height: 70%;
+    top: 5%;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+.match {
+    background-color: red;
+}
+
+/************* About Game ********************/
+.about{
+    color: #b5b5b5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.about header {
+    width: 80%;
+    margin: 0 auto;
+}
+.about h1, .about h3 {
+    text-decoration: underline;
+}
+.about h1 {
+    margin-bottom: 2%;
+    font-family: terminator, sans-serif;
+}
+.description {
+    height: 30%;
+    width: 40%;
+    display: inline-block;
+    vertical-align: top;
+    line-height: 2;
+}
+.description p {
+    text-align: left;
+}
+.description ul {
+    list-style: none;
+}
+.creator {
+    text-align: center;
+    margin-top: 5%;
+}
+.about img {
+    width: 15%;
+    height: auto;
+    border-radius: 100%;
+}
+.about a, .about a:visited {
+    text-decoration: none;
+    font-weight: bold;
+}
+.back_to_game {
+    color: #960b27;
+}
+.back_to_game:hover {
+    border-bottom: 1px solid #960b27;
+}
+.portfolio {
+    color: mediumpurple;
+}
+.portfolio:hover {
+    border-bottom: 1px solid mediumpurple;
+}
+
