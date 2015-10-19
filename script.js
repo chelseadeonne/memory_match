@@ -23,7 +23,7 @@ $(document).ready(function(){
         if (matches === 0) {
             return 0;
         }else {
-            return Math.floor((matches/attempts) * 100);
+            return Math.floor(matches/attempts * 100);
         }
     }
     function reset_stats() {

@@ -150,12 +150,6 @@ body {
     bottom: 0;
     left: 0;
 }
-.matchedCards {
-    background-image: url(images/bullet.png);
-    background-repeat: no-repeat;
-    background-position: 50%;
-    background-size: 100% 100%;
-}
 
 /************* About Game ********************/
 .about{
