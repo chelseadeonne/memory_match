@@ -1,6 +1,6 @@
 var first_card_clicked = null;
 var second_card_clicked = null;
-var total_possible_matches = 2;
+var total_possible_matches = 9;
 var matches = 0;
 var attempts = 0;
 var accuracy = 0;
@@ -11,6 +11,8 @@ var game_title = $("<h1>Terminator Match Game</h1>");
 var again = $("<h2 class='again'>Play Again?</h2>");
 var yes = $("<button class='affirmative'>Affirmative</button>");
 var no = $("<button class='negative'>Negative</button>");
+var card1;
+var card2;
 $(document).ready(function(){
     function display_stats() {
         $(".games-played .value").text(games_played);
@@ -21,7 +23,7 @@ $(document).ready(function(){
         if (matches === 0) {
             return 0;
         }else {
-            return Math.floor((matches/attempts) * 100);
+            return Math.floor(matches/attempts * 100);
         }
     }
     function reset_stats() {
@@ -34,11 +36,13 @@ $(document).ready(function(){
         card_flip.play();
         var current_card = $(this).find(".front").attr("data-card");
         if (first_card_clicked == null) {
-            $(this).find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
+            card1 = $(this);
+            card1.find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
             first_card_clicked = current_card;
             console.log("The first card you clicked is: " + first_card_clicked);
         }else {
-            $(this).find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
+            card2 = $(this);
+            card2.find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
             second_card_clicked = current_card;
             attempts++;
             console.log("second card was clicked: " + second_card_clicked);
@@ -81,7 +85,10 @@ $(document).ready(function(){
                 console.log("no match");
                 $(first_card_clicked).find(".back").fadeIn().html("<img src='images/skynet.jpg'>");
                 $(second_card_clicked).find(".card").find(".back").fadeIn().html("<img src='images/skynet.jpg'>");
-                $(".back").delay('fast').fadeIn('fast',function(){
+                $(card1).find(".back").delay('fast').fadeIn('fast',function(){
+                    $(".back").html("<img src='images/skynet.jpg'>");
+                });
+                $(card2).find(".back").delay('fast').fadeIn('fast',function(){
                     $(".back").html("<img src='images/skynet.jpg'>");
                 });
                 first_card_clicked = null;
