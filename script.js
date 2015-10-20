@@ -65,7 +65,7 @@ $(document).ready(function(){
                 first_card_clicked = null;
                 second_card_clicked = null;
                 matches++;
-                if (matches >= total_possible_matches) {
+                if (matches === total_possible_matches) {
                     music_theme = false;
                     $(".reset").on('click', reset);
                     $("#game-area").delay(500).fadeIn(200,function(){
@@ -125,4 +125,5 @@ $(document).ready(function(){
             music_theme = false;
         }
     });
+    //$(".reset").on('click', reset); //flip_card breaks when this is triggered
 });
