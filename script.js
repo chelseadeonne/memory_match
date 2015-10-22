@@ -30,6 +30,9 @@ function reset_stats() {
     matches = 0;
     attempts = 0;
     display_stats();
+    music_theme = false;
+    theme_music.pause();
+    $('.music').html("Play Music");
 }
 function reset() {
     $(".music").show();
@@ -51,16 +54,16 @@ function flip_card() {
         card_flip.play();
         first_card_clicked = current_card;
         console.log("The first card you clicked is: " + first_card_clicked);
+        $(card1).off('click');
     }else {
         card2 = $(this);
         card2.find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
         second_card_clicked = current_card;
         console.log("second card was clicked: " + second_card_clicked);
+        $(card2).off('click');
         if (first_card_clicked === second_card_clicked) {
             match.play();
             console.log("match!");
-            $(card1).off("click");
-            $(card2).off("click");
             first_card_clicked = null;
             second_card_clicked = null;
             matches++;
@@ -94,6 +97,8 @@ function flip_card() {
                 console.log("You Won!");
             }
         }else {
+            $(card1).on('click', flip_card);
+            $(card2).on('click', flip_card);
             no_match.play();
             attempts++;
             console.log("no match");
