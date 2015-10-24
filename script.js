@@ -133,9 +133,14 @@ $(document).ready(function(){
     });
     $(".reset").on('click', function(){
         reboot.play();
-        $(".music").show().html("Stop Music");
-        music_theme = true;
-        theme_music.play();
+        $(".music").fadeOut("fast");
+        music = false;
+        theme_music.pause();
+        $(".music").delay(3000).fadeIn(200,function(){
+            $(".music").show().html("Stop Music");
+            music_theme = true;
+            theme_music.play();
+        });
         games_played++;
         reset_stats();
         display_stats();
