@@ -5,7 +5,7 @@ var matches = 0;
 var attempts = 0;
 var accuracy = 0;
 var games_played = 0;
-var music_theme = false;
+var music_theme = true;
 var winner = $("<h1 class='winner'>Winner!</h1>");
 var game_title = $("<h1>Terminator Match Game</h1>");
 var again = $("<h2 class='again'>Play Again?</h2>");
@@ -13,25 +13,46 @@ var yes = $("<button class='affirmative'>Affirmative</button>");
 var no = $("<button class='negative'>Negative</button>");
 var card1;
 var card2;
+function display_stats() {
+    $(".games-played .value").text(games_played);
+    $(".attempts .value").text(attempts);
+    $(".accuracy .value").html(calculate_accuracy()).append("&#37;");
+}
+function calculate_accuracy() {
+    if (matches === 0) {
+        return 0;
+    }else {
+        return Math.floor(matches/attempts * 100);
+    }
+}
+function reset_stats() {
+    accuracy = 0;
+    matches = 0;
+    attempts = 0;
+    display_stats();
+}
 $(document).ready(function(){
-    function display_stats() {
-        $(".games-played .value").text(games_played);
-        $(".attempts .value").text(attempts);
-        $(".accuracy .value").html(calculate_accuracy()).append("&#37;");
-    }
-    function calculate_accuracy() {
-        if (matches === 0) {
-            return 0;
-        }else {
-            return Math.floor(matches/attempts * 100);
-        }
-    }
-    function reset_stats() {
-        accuracy = 0;
-        matches = 0;
-        attempts = 0;
-        display_stats();
-    }
+    var one = $("<div class='card' id='card1'><div class='front' id='front1' data-card='reese'><img src='images/t1-reese.png'></div><div class='back' id='back1'></div></div>");
+    var two = $("<div class='card' id='card2'><div class='front' id='front2' data-card='t1-sarah'><img src='images/t1-sarah.jpg'></div><div class='back' id='back2'></div></div>");
+    var three = $("<div class='card' id='card3'><div class='front' id='front3' data-card='t1-terminator'><img src='images/t1-terminator.jpg'></div><div class='back' id='back3'></div></div>");
+    var four = $("<div class='card' id='card4'><div class='front' id='front4' data-card='reese'><img src='images/t1-reese.png'></div><div class='back' id='back4'></div></div>");
+    var five = $("<div class='card' id='card5'><div class='front' id='front5' data-card='t2-arnold-john'><img src='images/t2-arnold-john.jpg'></div><div class='back' id='back5'></div></div>");
+    var six = $("<div class='card' id='card6'><div class='front' id='front6' data-card='t2-terminator'><img src='images/t2-terminator.jpg'></div><div class='back' id='back6'></div></div>");
+    var seven = $("<div class='card' id='card7'><div class='front' id='front7' data-card='t1-sarah'><img src='images/t1-sarah.jpg'></div><div class='back' id='back7'></div></div>");
+    var eight = $("<div class='card' id='card8'><div class='front' id='front8' data-card='t3-terminator'><img src='images/t3-terminator.jpg'></div><div class='back' id='back8'></div></div>");
+    var nine = $("<div class='card' id='card9'><div class='front' id='front9' data-card='t4-marcus'><img src='images/t4-marcus.jpg'></div><div class='back' id='back9'></div></div>");
+    var ten = $("<div class='card' id='card10'><div class='front' id='front10' data-card='t2-arnold-john'><img src='images/t2-arnold-john.jpg'></div><div class='back' id='back10'></div></div>");
+    var eleven = $("<div class='card' id='card11'><div class='front' id='front11' data-card='t5-john'><img src='images/t5-john.jpg'></div><div class='back' id='back1'></div></div>");
+    var twelve = $("<div class='card' id='card12'><div class='front' id='front12' data-card='t4-marcus'><img src='images/t4-marcus.jpg'></div><div class='back' id='back12'></div></div>");
+    var thirteen = $("<div class='card' id='card13'><div class='front' id='front13' data-card='t1-terminator'><img src='images/t1-terminator.jpg'></div><div class='back' id='back13'></div></div>");
+    var fourteen = $("<div class='card' id='card14'><div class='front' id='front14' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'></div><div class='back' id='back14'></div></div>");
+    var fifteen = $("<div class='card' id='card15'><div class='front' id='front15' data-card='t5-john'><img src='images/t5-john.jpg'></div><div class='back' id='back15'></div></div>");
+    var sixteen = $("<div class='card' id='card16'><div class='front' id='front16' data-card='t2-terminator'><img src='images/t2-terminator.jpg'></div><div class='back' id='back16'></div></div>");
+    var seventeen = $("<div class='card' id='card17'><div class='front' id='front17' data-card='t3-terminator'><img src='images/t3-terminator.jpg'></div><div class='back' id='back17'></div></div>");
+    var eighteen = $("<div class='card' id='card18'><div class='front' id='front18' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'></div><div class='back' id='back18'></div></div>");
+    var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
+    theme_music.play();
+    $("#game-area").append(all_cards);
     $(".card").on('click', function(){
         card_flip.play();
         var current_card = $(this).find(".front").attr("data-card");
@@ -57,7 +78,9 @@ $(document).ready(function(){
                     $("#game-area").delay(500).fadeIn(200,function(){
                         $(".title").html(winner).append(again, yes, no);
                         $(".affirmative").on('click', function(){
-                            $(".music").show();
+                            $(".music").show().html("Stop Music");
+                            music_theme = true;
+                            theme_music.play();
                             games_played++;
                             reset_stats();
                             display_stats();
@@ -98,19 +121,21 @@ $(document).ready(function(){
         display_stats();
     });
     $(".music").on('click', function(){
-        if (music_theme === false) {
-            music_theme = true;
-            theme_music.play();
-            $(".music").html("Stop Music")
-        }else {
-            theme_music.pause();
-            $(".music").html("Play Music");
+        if (music_theme === true) {
             music_theme = false;
+            theme_music.pause();
+            $(".music").html("Play Music")
+        }else {
+            theme_music.play();
+            $(".music").html("Stop Music");
+            music_theme = true;
         }
     });
     $(".reset").on('click', function(){
-        $(".music").show();
         reboot.play();
+        $(".music").show().html("Stop Music");
+        music_theme = true;
+        theme_music.play();
         games_played++;
         reset_stats();
         display_stats();
