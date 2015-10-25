@@ -31,6 +31,20 @@ function reset_stats() {
     attempts = 0;
     display_stats();
 }
+function shuffle(o) {
+    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
+    return o;
+}
+function you_won(){
+    music_theme = false;
+    $('.music').fadeOut('fast');
+    theme_music.pause();
+    game_won.play();
+    $("#game-area").delay(500).fadeIn(200,function() {
+        $(".title").html(winner).append(again, yes, no);
+        console.log("You Won!");
+    });
+}
 $(document).ready(function(){
     var one = $("<div class='card' id='card1'><div class='front' id='front1' data-card='reese'><img src='images/t1-reese.png'></div><div class='back' id='back1'></div></div>");
     var two = $("<div class='card' id='card2'><div class='front' id='front2' data-card='t1-sarah'><img src='images/t1-sarah.jpg'></div><div class='back' id='back2'></div></div>");
@@ -51,6 +65,7 @@ $(document).ready(function(){
     var seventeen = $("<div class='card' id='card17'><div class='front' id='front17' data-card='t3-terminator'><img src='images/t3-terminator.jpg'></div><div class='back' id='back17'></div></div>");
     var eighteen = $("<div class='card' id='card18'><div class='front' id='front18' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'></div><div class='back' id='back18'></div></div>");
     var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
+    shuffle(all_cards);
     theme_music.play();
     $("#game-area").append(all_cards);
     $(".card").on('click', function(){
@@ -77,10 +92,10 @@ $(document).ready(function(){
                 second_card_clicked = null;
                 matches++;
                 if (matches >= total_possible_matches) {
-                    music_theme = false;
+                    you_won();
                     $("#game-area").delay(500).fadeIn(200,function(){
-                        $(".title").html(winner).append(again, yes, no);
                         $(".affirmative").on('click', function(){
+                            shuffle(all_cards);
                             $(".music").show().html("Stop Music");
                             music_theme = true;
                             theme_music.play();
@@ -103,8 +118,6 @@ $(document).ready(function(){
                         theme_music.pause();
                         $(".music").html("Play Music").hide();
                     }
-                    game_won.play();
-                    console.log("You Won!");
                 }
             }else {
                 no_match.play();
@@ -137,6 +150,7 @@ $(document).ready(function(){
         }
     });
     $(".reset").on('click', function(){
+        shuffle(all_cards);
         reboot.play();
         $(".music").fadeOut("fast");
         music = false;
