@@ -31,10 +31,6 @@ function reset_stats() {
     attempts = 0;
     display_stats();
 }
-function shuffle(o) {
-    for(var j, x, i = o.length; i; j = parseInt(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x);
-    return o;
-}
 function you_won(){
     music_theme = false;
     $('.music').fadeOut('fast');
@@ -65,7 +61,9 @@ $(document).ready(function(){
     var seventeen = $("<div class='card' id='card17'><div class='front' id='front17' data-card='t3-terminator'><img src='images/t3-terminator.jpg'></div><div class='back' id='back17'></div></div>");
     var eighteen = $("<div class='card' id='card18'><div class='front' id='front18' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'></div><div class='back' id='back18'></div></div>");
     var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
-    shuffle(all_cards);
+    all_cards.sort(function() {
+        return 0.5 - Math.random()
+    });
     theme_music.play();
     $("#game-area").append(all_cards);
     $(".card").on('click', function(){
@@ -95,7 +93,10 @@ $(document).ready(function(){
                     you_won();
                     $("#game-area").delay(500).fadeIn(200,function(){
                         $(".affirmative").on('click', function(){
-                            shuffle(all_cards);
+                            all_cards.sort(function() {
+                                return 0.5 - Math.random()
+                            });
+                            $("#game-area").append(all_cards);
                             $(".music").show().html("Stop Music");
                             music_theme = true;
                             theme_music.play();
@@ -150,7 +151,10 @@ $(document).ready(function(){
         }
     });
     $(".reset").on('click', function(){
-        shuffle(all_cards);
+        all_cards.sort(function() {
+            return 0.5 - Math.random()
+        });
+        $("#game-area").append(all_cards);
         reboot.play();
         $(".music").fadeOut("fast");
         music = false;
