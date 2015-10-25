@@ -38,6 +38,9 @@ body {
     top: 10%;
     left: 10%;
 }
+.red {
+    color: #960b27;
+}
 .settings_about, .reboot_sound {
     position: absolute;
     text-align: right;
@@ -114,6 +117,7 @@ body {
     height: 75%;
     vertical-align: top;
     background-image: url(images/silver.jpg);
+    animation-duration: 2s;
 }
 .card {
     width: 13%;
@@ -142,16 +146,27 @@ body {
     background-position: 50%;
     background-size: 100% 100%;
 }
-#game_won {
-    position: relative;
-    height: 70%;
-    top: 5%;
-    right: 0;
-    bottom: 0;
-    left: 0;
-}
 .disabled {
     pointer-events: none;
+}
+.hidden {
+    display: none;
+}
+.terminated {
+    width: 50%;
+    height: 50%;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+
+}
+.melting_red {
+    color: #960b27;
+    transition: 2s;
+}
+#t1 {
+    color: #960b27;
 }
 /************* About Game ********************/
 .about{
