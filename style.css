@@ -69,6 +69,7 @@ body {
     color: black;
     border: 1px solid black;
     background-image: none;
+    /*cursor:url(images/red_target.png), auto; */
 }
 .winner {
     color: #960b27;
@@ -117,7 +118,7 @@ body {
     height: 75%;
     vertical-align: top;
     background-image: url(images/silver.jpg);
-    animation-duration: 2s;
+    cursor:url(images/red_target.png), auto;
 }
 .card {
     width: 13%;
@@ -126,6 +127,7 @@ body {
     margin: 1.5% 1.5% 0 0;
     border-radius: 5%;
     position: relative;
+
 }
 .card:hover {
     border: 1px solid #960b27;
