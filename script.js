@@ -60,16 +60,19 @@ $(document).ready(function(){
             card1 = $(this);
             card1.find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
             first_card_clicked = current_card;
+            $(card1).addClass('disabled');
             console.log("The first card you clicked is: " + first_card_clicked);
         }else {
             card2 = $(this);
             card2.find(".back").html("<img src='images/metal_bullet_hole.png'>").fadeOut(1000);
             second_card_clicked = current_card;
             attempts++;
+            $(card2).addClass('disabled');
             console.log("second card was clicked: " + second_card_clicked);
             if (first_card_clicked === second_card_clicked) {
                 match.play();
                 console.log("match!");
+                $(card1).addClass('disabled');
                 first_card_clicked = null;
                 second_card_clicked = null;
                 matches++;
@@ -86,7 +89,7 @@ $(document).ready(function(){
                             display_stats();
                             first_card_clicked = null;
                             second_card_clicked = null;
-                            $(".card").find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
+                            $(".card").removeClass('disabled').find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
                             $(".title").html(game_title);
                             console.log("affirmative");
                         });
@@ -105,6 +108,8 @@ $(document).ready(function(){
                 }
             }else {
                 no_match.play();
+                $(card1).removeClass('disabled');
+                $(card2).removeClass('disabled');
                 console.log("no match");
                 $(first_card_clicked).find(".back").fadeIn().html("<img src='images/skynet.jpg'>");
                 $(second_card_clicked).find(".card").find(".back").fadeIn().html("<img src='images/skynet.jpg'>");
@@ -146,7 +151,7 @@ $(document).ready(function(){
         display_stats();
         first_card_clicked = null;
         second_card_clicked = null;
-        $(".card").find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
+        $(".card").removeClass('disabled').find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
         $(".title").html(game_title);
         console.log("reboot");
     });
