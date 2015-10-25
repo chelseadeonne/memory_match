@@ -118,7 +118,7 @@ body {
     height: 75%;
     vertical-align: top;
     background-image: url(images/silver.jpg);
-    cursor:url(images/red_target.png), auto;
+    cursor:url(images/white_inspector_target.png), auto;
 }
 .card {
     width: 13%;
