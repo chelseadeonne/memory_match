@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Terminator Memory Match</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</head>
+<body class="memory_match">
+<audio loop id="theme_music">
+    <source src="sounds/music.mp3">
+</audio>
+<audio id="card_flip">
+    <source src="sounds/card_flip.mp3">
+</audio>
+<audio id="reboot">
+    <source src="sounds/reboot.mp3">
+</audio>
+<audio id="match">
+    <source src="sounds/match.mp3">
+</audio>
+<audio id="no_match">
+    <source src="sounds/no_match.mp3">
+</audio>
+<audio id="game_won">
+    <source src="sounds/game_won.mp3">
+</audio>
+<header class="game_menu">
+    <div class="title"><span id="t1">T</span><span id="e">e</span><span id="r1">r</span><span id="m">m</span><span id="i">i</span><span id="n">n</span><span id="a">a</span><span id="t2">t</span><span id="o">o</span><span id="r2">r</span><span class="red"> Match Game</span></div>
+    <div class="settings_about">
+        <button class="about"><a href="about.html">About</a></button>
+    </div>
+    <div class="reboot_sound">
+        <button class="music">Stop Music</button><br>
+        <button class="reset">Reboot</button>
+    </div>
+</header>
+<section class="game_info">
+    <div class="stats games-played">
+        <p class="label">Games Played</p>
+        <div class="value"></div>
+    </div>
+    <div class="stats attempts">
+        <p class="label">Attempts</p>
+        <div class="value"></div>
+    </div>
+    <div class="stats accuracy">
+        <p class="label">Accuracy</p>
+        <div class="value"></div>
+    </div>
+</section>
+<section id="game-area">
+
+</section>
+</body>
+</html>
