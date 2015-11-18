@@ -75,6 +75,10 @@ body {
     color: #960b27;
     font-size: 3vw;
 }
+.loser {
+    color: white;
+    font-size: 2vw;
+}
 .again {
     color: #960b27;
     font-size: 1vw;

@@ -14,11 +14,38 @@ var yes = $("<button class='affirmative'>Affirmative</button>");
 var no = $("<button class='negative'>Negative</button>");
 var card1;
 var card2;
+var timer_counter = 20;
+var lost = $("<h2 class='winner'>You are Terminated!</h2>");
+var reboot_message = $("<h4 class='loser'>Reboot to Play Again</h4>");
+var time;
+
+/*============ Timer Function ============= */
+function onTimer() {
+    time = setTimeout(20000);
+    document.getElementById('timer').innerHTML = timer_counter;
+    timer_counter--;
+    if (timer_counter < 0 && matches < 9) {
+        $('.card').addClass("disabled");
+        terminated.play();
+        theme_music.pause();
+        music_theme = false;
+        $(".music").html("Play Music");
+        $(".title").html(lost).append(reboot_message);
+
+    }
+    else {
+        time = setTimeout(onTimer, 1000);
+    }
+}
+
+/*===== Stats for games played, attempts, and accuracy=========*/
 function display_stats() {
     $(".games-played .value").text(games_played);
     $(".attempts .value").text(attempts);
     $(".accuracy .value").html(calculate_accuracy()).append("&#37;");
 }
+
+/*======= Equation for calculating accuracy=============*/
 function calculate_accuracy() {
     if (matches === 0) {
         return 0;
@@ -26,14 +53,19 @@ function calculate_accuracy() {
         return Math.floor(matches/attempts * 100);
     }
 }
+/*============ Reset all Stats ===============*/
 function reset_stats() {
     game_title = $("<h1 class='title'><span id='t1'>T</span><span id='e'>e</span><span id='r1'>r</span><span id='m'>m</span><span id='i'>i</span><span id='n'>n</span><span id='a'>a</span><span id='t2'>t</span><span id='o'>o</span><span id='r2'>r</span><span class='red'> Match Game</span></h1>");
     accuracy = 0;
     matches = 0;
     attempts = 0;
     display_stats();
+    $(".card").removeClass("disabled");
+    $("#timer_button").removeClass("disabled");
 }
+/*============ Winner Function ===========*/
 function you_won(){
+    clearTimeout(time);
     music_theme = false;
     $('.music').fadeOut('fast');
     theme_music.pause();
@@ -43,7 +75,12 @@ function you_won(){
         console.log("You Won!");
     });
 }
+
+/*============ When Doc is Loaded ===============*/
+
 $(document).ready(function(){
+
+/*============ Dynamically Created Board ============= */
     var one = $("<div class='card'><div class='front' data-card='reese'><img src='images/t1-reese.png'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var two = $("<div class='card'><div class='front' data-card='reese'><img src='images/t1-reese.png'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var three = $("<div class='card'><div class='front' data-card='t1-terminator'><img src='images/t1-terminator.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
@@ -62,13 +99,18 @@ $(document).ready(function(){
     var sixteen = $("<div class='card'><div class='front' data-card='t5-john'><img src='images/t5-john.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var seventeen = $("<div class='card'><div class='front'data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var eighteen = $("<div class='card'><div class='front' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
-    var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];  /*
+    var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
+
+/*=============== Card Shuffle on Doc load =============*/
     all_cards.sort(function() {
         return 0.5 - Math.random()
-    }); */
+    });
+/*==== Auto Music, Dynamically Added Cards, Removing Terminated image on Cards =====*/
     theme_music.play();
     $("#game-area").append(all_cards);
     $(".card").find(".front").find(".terminated").fadeOut('fast');
+
+/*======== Card Click Handler, Card Interaction ============*/
     $(".card").on('click', function(){
         card_flip.play();
         var current_card = $(this).find(".front").attr("data-card");
@@ -91,15 +133,16 @@ $(document).ready(function(){
                 $(card1).find('.front').find('.terminated').fadeIn(2000);
                 $(card2).find('.front').find('.terminated').fadeIn(2000);
                 $(card1).addClass('disabled');
-
-                //$(card1).addClass('match');
                 first_card_clicked = null;
                 second_card_clicked = null;
                 matches++;
-                if (matches >= total_possible_matches) {
+/*============= When Game is Won ====================*/
+                if (matches >= total_possible_matches && timer_counter > 0) {
                     you_won();
                     $("#game-area").delay(500).fadeIn(200,function(){
+/*============ Condition If Player Chooses to Play Again ====================*/
                         $(".affirmative").on('click', function(){
+                            $("#timer_button").removeClass("disabled");
                             all_cards.sort(function() {
                                 return 0.5 - Math.random()
                             });
@@ -115,19 +158,26 @@ $(document).ready(function(){
                             second_card_clicked = null;
                             $(".card").removeClass('disabled').find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
                             $(".title").html(game_title);
+                            timer_counter = 20;
+                            $("#timer").on('click', function(){
+                               onTimer();
+                            });
                             console.log("affirmative");
                         });
+/*============== Condition if Player Chooses to Not Play Again ==================*/
                         $(".negative").on('click', function() {
                             $(".music").show();
                             $(".title").html(game_title);
                             console.log("negative");
                         });
                     });
+/*============= When Game is Won Music Button Goes Away and Music Pauses=================*/
                     if (music_theme === false) {
                         theme_music.pause();
                         $(".music").html("Play Music").hide();
                     }
                 }
+/*============ When There is No Match, Skynet Re-appears =================*/
             }else {
                 no_match.play();
                 $(card1).removeClass('disabled');
@@ -145,7 +195,9 @@ $(document).ready(function(){
                 second_card_clicked = null;
             }
         }
+/*========= Shows Stats on left ===============*/
         display_stats();
+/*========= Terminator Title Letters Turn Red As Matches Increase ==========*/
         switch (matches) {
             case 0:
                 $('.title').addClass('.title');
@@ -179,19 +231,24 @@ $(document).ready(function(){
                 break;
         }
     });
-
+/*========== Music Control to either Pause or Play ===========*/
     $(".music").on('click', function(){
         if (music_theme === true) {
             music_theme = false;
             theme_music.pause();
-            $(".music").html("Play Music")
+            $(".music").html("Play Music");
         }else {
             theme_music.play();
             $(".music").html("Stop Music");
             music_theme = true;
         }
     });
+/*== Reboot Function to Increase Games Played, Reset Stats, and Restart Card Interaction ==*/
     $(".reset").on('click', function(){
+        timer_counter = 20;
+        $("#timer").on('click', function(){
+            onTimer();
+        });
         all_cards.sort(function() {
             return 0.5 - Math.random()
         });
@@ -214,5 +271,9 @@ $(document).ready(function(){
         $(".card").find(".front").find(".terminated").fadeOut();
         $(".title").html(game_title);
         console.log("reboot");
+    });
+/*== Stop Timer Button From Being Clicked After It Starts ==*/
+    $("#timer_button").on('click', function(){
+       $("#timer_button").addClass("disabled");
     });
 });
