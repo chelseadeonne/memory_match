@@ -24,6 +24,7 @@ function onTimer() {
     time = setTimeout(20000);
     document.getElementById('timer').innerHTML = timer_counter;
     timer_counter--;
+    /*========= Condition Where Player Loses The Game ===========*/
     if (timer_counter < 0 && matches < 9) {
         $('.card').addClass("disabled");
         terminated.play();
