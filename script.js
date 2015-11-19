@@ -21,11 +21,13 @@ var time;
 
 /*============ Timer Function ============= */
 function onTimer() {
+    //$("#timer_button").hide();
     time = setTimeout(20000);
     document.getElementById('timer').innerHTML = timer_counter;
     timer_counter--;
     /*========= Condition Where Player Loses The Game ===========*/
     if (timer_counter < 0 && matches < 9) {
+        $('.music').fadeOut('fast');
         $('.card').addClass("disabled");
         terminated.play();
         theme_music.pause();
@@ -81,7 +83,26 @@ function you_won(){
 
 $(document).ready(function(){
 
+/*=========== Dynamically Created Header ============*/
+    var header = $("<header class='game_menu'><div class='title'><span id='t1'>T</span><span id='e'>e</span><span id='r1'>r</span><span id='m'>m</span><span id='i'>i</span><span id='n'>n</span><span id='a'>a</span><span id='t2'>t</span><span id='o'>o</span><span id='r2'>r</span><span class='red'> Match Game</span></div><div class='settings_about'><button class='about'><a href='about.html'>About</a></button></div><div class='reboot_sound'><button class='music'>Stop Music</button><br><button class='reset'>Reboot</button></div></header>");
+
+/*=========== Dynamically Created Stats ============*/
+    var game_info_display = $("<section class='game_info'>");
+    var games_played_display = $("<div class='stats games-played'>");
+    var games_played_label_display = $("<p class='label'>Games</p>");
+    var games_played_value_display = $("<div class='value'>").append(games_played);
+    var attempts_display = $("<div class='stats attempts'>");
+    var attempts_label_display = $("<p class='label'>Attempts</p>");
+    var attempts_value_display = $("<div class='value'>").append(attempts);
+    var accuracy_display = $("<div class='stats accuracy'>");
+    var accuracy_label_display = $("<p class='label'>Accuracy</p>");
+    var accuracy_value_display = $("<div class='value'>").append(accuracy);
+    var timer_display = $("<div class='stats'>");
+    var timer_button_display = $("<p class='label'><button id='timer_button' onclick='onTimer()'>Timer</button></p>");
+    var timer_value_display = $("<div class='value' id='timer'>");
+
 /*============ Dynamically Created Board ============= */
+    var game_board = $("<section id='game-area'>")
     var one = $("<div class='card'><div class='front' data-card='reese'><img src='images/t1-reese.png'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var two = $("<div class='card'><div class='front' data-card='reese'><img src='images/t1-reese.png'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var three = $("<div class='card'><div class='front' data-card='t1-terminator'><img src='images/t1-terminator.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
@@ -102,13 +123,26 @@ $(document).ready(function(){
     var eighteen = $("<div class='card'><div class='front' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
 
+    $(games_played_display).append(games_played_label_display, games_played_value_display);
+    $(attempts_display).append(attempts_label_display, attempts_value_display);
+    $(accuracy_display).append(accuracy_label_display, accuracy_value_display);
+    $(timer_display).append(timer_button_display, timer_value_display);
+    $(game_info_display).append(games_played_display, attempts_display, accuracy_display, timer_display);
+
+    $(game_board).append(all_cards);
+    if (screen.width < 826) {
+        $(".memory_match").append(header, game_board, game_info_display);
+    }else {
+        $(".memory_match").append(header, game_info_display, game_board);
+    }
+
 /*=============== Card Shuffle on Doc load =============*/
-    all_cards.sort(function() {
+   /* all_cards.sort(function() {
         return 0.5 - Math.random()
-    });
+    }); */
 /*==== Auto Music, Dynamically Added Cards, Removing Terminated image on Cards =====*/
     theme_music.play();
-    $("#game-area").append(all_cards);
+    //$("#game-area").append(all_cards);
     $(".card").find(".front").find(".terminated").fadeOut('fast');
 
 /*======== Card Click Handler, Card Interaction ============*/
@@ -246,6 +280,7 @@ $(document).ready(function(){
     });
 /*== Reboot Function to Increase Games Played, Reset Stats, and Restart Card Interaction ==*/
     $(".reset").on('click', function(){
+        clearTimeout(time);
         timer_counter = 20;
         $("#timer").on('click', function(){
             onTimer();
