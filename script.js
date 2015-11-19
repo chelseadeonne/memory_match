@@ -14,7 +14,7 @@ var yes = $("<button class='affirmative'>Affirmative</button>");
 var no = $("<button class='negative'>Negative</button>");
 var card1;
 var card2;
-var timer_counter = 20;
+var timer_counter = 60;
 var lost = $("<h2 class='winner'>You are Terminated!</h2>");
 var reboot_message = $("<h4 class='loser'>Reboot to Play Again</h4>");
 var time;
@@ -22,7 +22,7 @@ var time;
 /*============ Timer Function ============= */
 function onTimer() {
     //$("#timer_button").hide();
-    time = setTimeout(20000);
+    time = setTimeout(60000);
     document.getElementById('timer').innerHTML = timer_counter;
     timer_counter--;
     /*========= Condition Where Player Loses The Game ===========*/
@@ -123,6 +123,11 @@ $(document).ready(function(){
     var eighteen = $("<div class='card'><div class='front' data-card='t5-sarah-kyle'><img src='images/t5-sarah-kyle.jpg'><img class='terminated'src='images/terminated.png'></div><div class='back'></div></div>");
     var all_cards = [one, two, three, four, five, six, seven, eight, nine, ten, eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen];
 
+/*=============== Card Shuffle on Doc load =============*/
+    all_cards.sort(function() {
+        return 0.5 - Math.random()
+    });
+/*============== Stats Layout ================*/
     $(games_played_display).append(games_played_label_display, games_played_value_display);
     $(attempts_display).append(attempts_label_display, attempts_value_display);
     $(accuracy_display).append(accuracy_label_display, accuracy_value_display);
@@ -136,10 +141,6 @@ $(document).ready(function(){
         $(".memory_match").append(header, game_info_display, game_board);
     }
 
-/*=============== Card Shuffle on Doc load =============*/
-   /* all_cards.sort(function() {
-        return 0.5 - Math.random()
-    }); */
 /*==== Auto Music, Dynamically Added Cards, Removing Terminated image on Cards =====*/
     theme_music.play();
     //$("#game-area").append(all_cards);
@@ -193,7 +194,7 @@ $(document).ready(function(){
                             second_card_clicked = null;
                             $(".card").removeClass('disabled').find(".back").html("<img src='images/skynet.jpg'>").fadeIn();
                             $(".title").html(game_title);
-                            timer_counter = 20;
+                            timer_counter = 60;
                             $("#timer").on('click', function(){
                                onTimer();
                             });
@@ -281,7 +282,7 @@ $(document).ready(function(){
 /*== Reboot Function to Increase Games Played, Reset Stats, and Restart Card Interaction ==*/
     $(".reset").on('click', function(){
         clearTimeout(time);
-        timer_counter = 20;
+        timer_counter = 60;
         $("#timer").on('click', function(){
             onTimer();
         });
